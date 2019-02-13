@@ -14,6 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 import { Formik, ErrorMessage } from "formik";
+import signInService from "../../Services/SignInService";
 import * as yup from "yup";
 import "./SignIn.css";
 
@@ -56,6 +57,24 @@ const styles = theme => ({
 });
 
 class SignIn extends React.Component {
+  handleSubmit = (values, actions) => {
+    const url = "/users/signin";
+    signInService
+      .signIn(values.email, values.password)
+      .then(userInfo => {
+        if (userInfo) {
+          localStorage.setItem("userInfo", JSON.stringify(userInfo));
+          this.props.history.push("/Dashboard");
+        } else {
+          // handle auth error by displaying to user on login page!
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        // handle error by displaying to user on login page!
+      });
+  };
+
   render() {
     const { classes, email, password } = this.props;
     return (
@@ -70,10 +89,7 @@ class SignIn extends React.Component {
           </Typography>
           <Formik
             initialValues={(email, password)}
-            onSubmit={(values, actions) => {
-              debugger;
-              actions.setSubmitting(false);
-            }}
+            onSubmit={(values, actions) => this.handleSubmit(values, actions)}
             validationSchema={yup.object().shape({
               email: yup
                 .string()
