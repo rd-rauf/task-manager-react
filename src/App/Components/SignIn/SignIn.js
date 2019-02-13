@@ -77,18 +77,18 @@ class SignIn extends React.Component {
             validationSchema={yup.object().shape({
               email: yup
                 .string()
-                .required("Email id is required")
-                .email("A valid email id must be provided"),
+                .required("Email is required")
+                .email("A valid email must be provided"),
               password: yup
                 .string()
                 .required("Password is required")
-                .min(8, "Password must be of length 8 to 100 characters")
-                .max(100, "Password must be of length 8 to 100 characters")
+                .min(8, "Password must be of 8 characters minimum")
+                .max(100, "Password must be of 100 characters maximum")
             })}
             render={({ values, errors, status, touched, handleBlur, handleChange, handleSubmit, isSubmitting }) => (
               <form className={classes.form} onSubmit={handleSubmit} noValidate>
                 <FormControl margin="normal" required fullWidth>
-                  <InputLabel htmlFor="email">Email Address</InputLabel>
+                  <InputLabel htmlFor="email">Email</InputLabel>
                   <Input
                     id="email"
                     name="email"
