@@ -13,8 +13,11 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 
+import { connect } from "react-redux";
+
 import { Formik, ErrorMessage } from "formik";
 import signInService from "../../Services/SignInService";
+import * as actions from "../../Actions/SignInAction";
 import * as yup from "yup";
 import "./SignIn.css";
 
@@ -64,6 +67,8 @@ class SignIn extends React.Component {
       .then(userInfo => {
         if (userInfo) {
           localStorage.setItem("userInfo", JSON.stringify(userInfo));
+          debugger;
+          this.props.onUserLogin(userInfo);
           this.props.history.push("/Dashboard");
         } else {
           // handle auth error by displaying to user on login page!
@@ -141,8 +146,25 @@ class SignIn extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    userLoggedIn: state.userLoggedIn
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onUserLogin: userInfo => {
+      dispatch(actions.signInAction(userInfo));
+    }
+  };
+};
+
 SignIn.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(SignIn);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(SignIn));
