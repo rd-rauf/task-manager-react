@@ -1,4 +1,4 @@
-import * as actionTypes from "../Store/Constants";
+import * as actionTypes from "./ActionTypes";
 
 function getSignIn(payload) {
   return {
