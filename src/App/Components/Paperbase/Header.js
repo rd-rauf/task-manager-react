@@ -93,14 +93,14 @@ class Header extends React.Component {
               <Grid item>
                 <Tooltip title="Alerts • No alters">
                   <IconButton color="inherit">
-                    <NotificationsIcon />
+                    <NotificationsIcon color="primary" />
                   </IconButton>
                 </Tooltip>
               </Grid>
               <Grid item>
                 <IconButton color="inherit" className={classes.iconButtonAvatar}>
                   {/* <Avatar className={classes.avatar} src="/static/images/avatar/1.jpg" /> */}
-                  <AccountCircle onClick={this.handleClick} />
+                  <AccountCircle color="primary" onClick={this.handleClick} />
                   <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose}>
                     <MenuItem onClick={this.handleClose}>Profile</MenuItem>
                     <MenuItem onClick={this.handleClose}>Logout</MenuItem>

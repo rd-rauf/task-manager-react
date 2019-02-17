@@ -9,7 +9,7 @@ import Header from "./Header";
 
 let theme = createMuiTheme({
   typography: {
-    fontFamily: "Ubuntu",
+    fontFamily: "Ubuntu, Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen'",
     useNextVariants: true,
     h5: {
       fontWeight: 500,
