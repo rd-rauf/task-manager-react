@@ -9,6 +9,7 @@ import Header from "./Header";
 
 let theme = createMuiTheme({
   typography: {
+    fontFamily: "Ubuntu",
     useNextVariants: true,
     h5: {
       fontWeight: 500,
