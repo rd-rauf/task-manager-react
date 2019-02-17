@@ -1,110 +1,98 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import HomeIcon from '@material-ui/icons/Home';
-import PeopleIcon from '@material-ui/icons/People';
-import DnsRoundedIcon from '@material-ui/icons/DnsRounded';
-import PermMediaOutlinedIcon from '@material-ui/icons/PhotoSizeSelectActual';
-import PublicIcon from '@material-ui/icons/Public';
-import SettingsEthernetIcon from '@material-ui/icons/SettingsEthernet';
-import SettingsInputComponentIcon from '@material-ui/icons/SettingsInputComponent';
-import TimerIcon from '@material-ui/icons/Timer';
-import SettingsIcon from '@material-ui/icons/Settings';
-import PhonelinkSetupIcon from '@material-ui/icons/PhonelinkSetup';
+import React from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { withStyles } from "@material-ui/core/styles";
+import Divider from "@material-ui/core/Divider";
+import Drawer from "@material-ui/core/Drawer";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import HomeIcon from "@material-ui/icons/Home";
+import PeopleIcon from "@material-ui/icons/People";
+import DnsRoundedIcon from "@material-ui/icons/DnsRounded";
+import PermMediaOutlinedIcon from "@material-ui/icons/PhotoSizeSelectActual";
+import PublicIcon from "@material-ui/icons/Public";
+import SettingsIcon from "@material-ui/icons/Settings";
 
 const categories = [
   {
-    id: 'Develop',
+    id: "Manage",
     children: [
-      { id: 'Authentication', icon: <PeopleIcon />, active: true },
-      { id: 'Database', icon: <DnsRoundedIcon /> },
-      { id: 'Storage', icon: <PermMediaOutlinedIcon /> },
-      { id: 'Hosting', icon: <PublicIcon /> },
-      { id: 'Functions', icon: <SettingsEthernetIcon /> },
-      { id: 'ML Kit', icon: <SettingsInputComponentIcon /> },
-    ],
+      { id: "Projects", icon: <DnsRoundedIcon /> },
+      { id: "Issues", icon: <PublicIcon /> },
+      { id: "Reports", icon: <PermMediaOutlinedIcon /> }
+    ]
   },
   {
-    id: 'Quality',
-    children: [
-      { id: 'Analytics', icon: <SettingsIcon /> },
-      { id: 'Performance', icon: <TimerIcon /> },
-      { id: 'Test Lab', icon: <PhonelinkSetupIcon /> },
-    ],
-  },
+    id: "Administration",
+    children: [{ id: "Users", icon: <PeopleIcon /> }, { id: "Settings", icon: <SettingsIcon /> }]
+  }
 ];
 
 const styles = theme => ({
   categoryHeader: {
     paddingTop: 16,
-    paddingBottom: 16,
+    paddingBottom: 16
   },
   categoryHeaderPrimary: {
-    color: theme.palette.common.white,
+    color: theme.palette.common.white
   },
   item: {
     paddingTop: 4,
     paddingBottom: 4,
-    color: 'rgba(255, 255, 255, 0.7)',
+    color: "rgba(255, 255, 255)"
   },
   itemCategory: {
-    backgroundColor: '#232f3e',
-    boxShadow: '0 -1px 0 #404854 inset',
+    backgroundColor: "#232f3e",
+    boxShadow: "0 -1px 0 #404854 inset",
     paddingTop: 16,
     paddingBottom: 16,
+    backgroundColor: "#0747a6"
   },
   firebase: {
     fontSize: 24,
     fontFamily: theme.typography.fontFamily,
-    color: theme.palette.common.white,
+    color: theme.palette.common.white
   },
   itemActionable: {
-    '&:hover': {
-      backgroundColor: 'rgba(255, 255, 255, 0.08)',
-    },
+    "&:hover": {
+      backgroundColor: "rgba(255, 255, 255, 0.08)"
+    }
   },
   itemActiveItem: {
-    color: '#4fc3f7',
+    color: "#4fc3f7"
   },
   itemPrimary: {
-    color: 'inherit',
+    color: "inherit",
     fontSize: theme.typography.fontSize,
-    '&$textDense': {
-      fontSize: theme.typography.fontSize,
+    "&$textDense": {
+      fontSize: theme.typography.fontSize
     },
+    backgroundColor: "#0747a6"
   },
   textDense: {},
   divider: {
-    marginTop: theme.spacing.unit * 2,
-  },
+    marginTop: theme.spacing.unit * 2
+  }
 });
 
 function Navigator(props) {
   const { classes, ...other } = props;
 
   return (
-    <Drawer variant="permanent" {...other}>
+    <Drawer variant="permanent" className={classes.drawer} {...other}>
       <List disablePadding>
-        <ListItem className={classNames(classes.firebase, classes.item, classes.itemCategory)}>
-          Paperbase
-        </ListItem>
+        <ListItem className={classNames(classes.firebase, classes.item, classes.itemCategory)}>Task Manager</ListItem>
         <ListItem className={classNames(classes.item, classes.itemCategory)}>
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
           <ListItemText
             classes={{
-              primary: classes.itemPrimary,
-            }}
-          >
-            Project Overview
+              primary: classes.itemPrimary
+            }}>
+            Overview
           </ListItemText>
         </ListItem>
         {categories.map(({ id, children }) => (
@@ -112,9 +100,8 @@ function Navigator(props) {
             <ListItem className={classes.categoryHeader}>
               <ListItemText
                 classes={{
-                  primary: classes.categoryHeaderPrimary,
-                }}
-              >
+                  primary: classes.categoryHeaderPrimary
+                }}>
                 {id}
               </ListItemText>
             </ListItem>
@@ -123,19 +110,13 @@ function Navigator(props) {
                 button
                 dense
                 key={childId}
-                className={classNames(
-                  classes.item,
-                  classes.itemActionable,
-                  active && classes.itemActiveItem,
-                )}
-              >
+                className={classNames(classes.item, classes.itemActionable, active && classes.itemActiveItem)}>
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText
                   classes={{
                     primary: classes.itemPrimary,
-                    textDense: classes.textDense,
-                  }}
-                >
+                    textDense: classes.textDense
+                  }}>
                   {childId}
                 </ListItemText>
               </ListItem>
@@ -149,7 +130,7 @@ function Navigator(props) {
 }
 
 Navigator.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(Navigator);
