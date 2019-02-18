@@ -16,7 +16,6 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { connect } from "react-redux";
 
 import { Formik, ErrorMessage } from "formik";
-import signInService from "../../Services/SignInService";
 import * as actions from "../../Actions/SignInAction";
 import * as yup from "yup";
 import "./SignIn.css";
@@ -61,23 +60,21 @@ const styles = theme => ({
 
 class SignIn extends React.Component {
   handleSubmit = (values, actions) => {
-    const url = "/users/signin";
-    signInService
-      .signIn(values.email, values.password)
-      .then(userInfo => {
-        if (userInfo) {
-          localStorage.setItem("userInfo", JSON.stringify(userInfo));
-          debugger;
-          this.props.onUserLogin(userInfo);
-          this.props.history.push("/Dashboard");
-        } else {
-          // handle auth error by displaying to user on login page!
-        }
-      })
-      .catch(error => {
-        console.error(error);
-        // handle error by displaying to user on login page!
-      });
+    debugger;
+    this.props.signInAction(values.email, values.password);
+    // signInService
+    //   .signIn(values.email, values.password)
+    //   .then(userInfo => {
+    //     if (userInfo) {
+    //       localStorage.setItem("userInfo", JSON.stringify(userInfo));
+    //       debugger;
+    //       this.props.onUserLogin(userInfo);
+    //       this.props.history.push("/Dashboard");
+    //     }
+    //   })
+    //   .catch(error => {
+    //     console.error(error);
+    //   });
   };
 
   render() {
@@ -154,8 +151,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUserLogin: userInfo => {
-      dispatch(actions.signInAction(userInfo));
+    signInAction: (email, password) => {
+      dispatch(actions.signInAction(email, password));
     }
   };
 };

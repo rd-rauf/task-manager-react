@@ -5,8 +5,9 @@ const initialState = {
 };
 
 const signInReducer = (state = initialState, action) => {
+  debugger;
   switch (action.type) {
-    case actionTypes.USER_LOGGED_IN: {
+    case actionTypes.AUTH_SUCCESS: {
       return { ...state, userLoggedIn: true, payload: action.payload };
     }
     default:

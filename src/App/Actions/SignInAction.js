@@ -1,20 +1,16 @@
+import signInService from "../Services/SignInService";
 import * as actionTypes from "./ActionTypes";
 
-function getSignIn(payload) {
-  return {
-    type: actionTypes.USER_LOGGED_IN,
-    payload: payload
+export const signInAction = (email, password) => {
+  return dispatch => {
+    dispatch({ type: actionTypes.AUTH_START });
+    signInService
+      .signIn(email, password)
+      .then(userInfo => {
+        dispatch({ type: actionTypes.AUTH_SUCCESS, payload: userInfo });
+      })
+      .catch(error => {
+        dispatch({ type: actionTypes.AUTH_FAIL });
+      });
   };
-}
-
-export const signInAction = payload => {
-  return getSignIn(payload);
 };
-
-// export const signInAction = payload => {
-//   return dispatch => {
-//     setTimeout(() => {
-//       dispatch(getSignIn(payload));
-//     }, 2000);
-//   };
-// };
