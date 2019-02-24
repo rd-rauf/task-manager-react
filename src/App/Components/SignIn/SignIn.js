@@ -145,7 +145,7 @@ class SignIn extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    userLoggedIn: state.userLoggedIn
+    isAuthenticated: state.isAuthenticated
   };
 };
 

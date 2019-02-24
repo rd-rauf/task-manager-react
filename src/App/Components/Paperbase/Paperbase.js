@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
 import { MuiThemeProvider, createMuiTheme, withStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Hidden from "@material-ui/core/Hidden";
@@ -181,7 +183,7 @@ class Paperbase extends React.Component {
             </Hidden>
           </nav>
           <div className={classes.appContent}>
-            <Header onDrawerToggle={this.handleDrawerToggle} />
+            <Header onDrawerToggle={this.handleDrawerToggle} isAuthenticated={this.props.isAuthenticated} />
             <main className={classes.mainContent}>
               <Content />
             </main>
@@ -196,4 +198,10 @@ Paperbase.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Paperbase);
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.isAuthenticated
+  };
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(Paperbase));
