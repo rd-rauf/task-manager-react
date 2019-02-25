@@ -16,8 +16,13 @@ class ProtectedView extends React.Component {
     if (this.props.isAuthenticated) {
       return (
         <Switch>
-          <Route path="/" exact component={SignIn} />
           <ProtectedRoute path="/dashboard" exact component={Paperbase} />
+        </Switch>
+      );
+    } else {
+      return (
+        <Switch>
+          <Route path="/" exact component={SignIn} />
         </Switch>
       );
     }
@@ -27,7 +32,7 @@ class ProtectedView extends React.Component {
 const mapStateToProps = (state) => {
   debugger;
   return {
-    isAuthenticated: state.isAuthenticated
+    isAuthenticated: state.sir.isAuthenticated
   }
 }
 
