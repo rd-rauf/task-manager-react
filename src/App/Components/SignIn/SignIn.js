@@ -144,6 +144,7 @@ class SignIn extends React.Component {
 }
 
 const mapStateToProps = state => {
+  debugger;
   return {
     isAuthenticated: state.isAuthenticated
   };

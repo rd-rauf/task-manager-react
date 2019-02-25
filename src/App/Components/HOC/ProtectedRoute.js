@@ -6,6 +6,7 @@ export const ProtectedRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props => {
+        debugger;
         if (props.isAuthenticated) {
           return <Component {...props} />;
         } else {
