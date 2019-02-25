@@ -199,7 +199,6 @@ Paperbase.propTypes = {
 };
 
 const mapStateToProps = state => {
-  debugger;
   return {
     isAuthenticated: state.sir.isAuthenticated
   };
