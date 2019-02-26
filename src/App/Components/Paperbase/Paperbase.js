@@ -200,7 +200,7 @@ Paperbase.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.isAuthenticated
+    isAuthenticated: state.sir.isAuthenticated
   };
 };
 

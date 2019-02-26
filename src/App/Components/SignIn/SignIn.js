@@ -14,6 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import { Formik, ErrorMessage } from "formik";
 import * as actions from "../../Actions/SignInAction";
@@ -60,7 +61,6 @@ const styles = theme => ({
 
 class SignIn extends React.Component {
   handleSubmit = (values, actions) => {
-    debugger;
     this.props.signInAction(values.email, values.password);
     // signInService
     //   .signIn(values.email, values.password)
@@ -78,8 +78,13 @@ class SignIn extends React.Component {
   };
 
   render() {
+    debugger;
     const { classes, email, password } = this.props;
+    if (this.props.isAuthenticated) {
+      return <Redirect to="/dashboard" />
+    }
     return (
+
       <main className={classes.main}>
         <CssBaseline />
         <Paper className={classes.paper}>
@@ -145,7 +150,7 @@ class SignIn extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.isAuthenticated
+    isAuthenticated: state.sir.isAuthenticated
   };
 };
 

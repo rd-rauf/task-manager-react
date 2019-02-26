@@ -44,7 +44,6 @@ const styles = theme => ({
     color: "rgba(255, 255, 255)"
   },
   itemCategory: {
-    backgroundColor: "#232f3e",
     boxShadow: "0 -1px 0 #404854 inset",
     paddingTop: 16,
     paddingBottom: 16,
