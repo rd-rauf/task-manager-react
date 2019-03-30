@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router";
-import { ProtectedRoute } from './Components/HOC/ProtectedRoute';
+import { ProtectedRoute } from "./Components/HOC/ProtectedRoute";
 
 import SignIn from "./Components/SignIn/SignIn";
 import Paperbase from "./Components/Paperbase/Paperbase";
-import ProtectedView from './Components/HOC/ProtectedView';
+import ProtectedView from "./Components/HOC/ProtectedView";
 
 import "./App.scss";
 
@@ -13,7 +13,8 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route path="/" exact component={SignIn} />
+          <Route path="/signin" exact component={SignIn} />
+          <Route path="/" exact component={Paperbase} />
           <Route path="/dashboard" exact component={Paperbase} />
         </Switch>
       </div>

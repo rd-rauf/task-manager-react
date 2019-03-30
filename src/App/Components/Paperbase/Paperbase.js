@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import { MuiThemeProvider, createMuiTheme, withStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -164,6 +165,9 @@ class Paperbase extends React.Component {
 
   render() {
     const { classes } = this.props;
+    if (!this.props.isAuthenticated) {
+      return <Redirect to="/signin" />;
+    }
 
     return (
       <MuiThemeProvider theme={theme}>

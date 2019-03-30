@@ -78,13 +78,11 @@ class SignIn extends React.Component {
   };
 
   render() {
-    debugger;
     const { classes, email, password } = this.props;
     if (this.props.isAuthenticated) {
-      return <Redirect to="/dashboard" />
+      return <Redirect to="/dashboard" />;
     }
     return (
-
       <main className={classes.main}>
         <CssBaseline />
         <Paper className={classes.paper}>

@@ -1,7 +1,7 @@
 import * as actionTypes from "../Actions/ActionTypes";
 
 const initialState = {
-  isAuthenticated: false
+  isAuthenticated: localStorage.getItem("userInfo") ? true : false
 };
 
 const signInReducer = (state = initialState, action) => {

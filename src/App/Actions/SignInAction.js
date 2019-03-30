@@ -11,8 +11,8 @@ export const signInAction = (email, password) => {
     signInService
       .signIn(email, password)
       .then(userInfo => {
+        localStorage.setItem("userInfo", JSON.stringify(userInfo));
         dispatch({ type: actionTypes.AUTH_SUCCESS, payload: userInfo });
-        // history.push("/dashboard");
       })
       .catch(error => {
         dispatch({ type: actionTypes.AUTH_FAIL });
