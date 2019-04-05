@@ -82,11 +82,6 @@ class Header extends React.Component {
                 <Typography color="inherit" variant="h5">
                   Dashboard
                 </Typography>
-                {isAuthenticated && (
-                  <Typography color="inherit" variant="h6">
-                    Welcome User
-                  </Typography>
-                )}
               </Grid>
               <Grid item />
               <Grid item>
