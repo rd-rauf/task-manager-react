@@ -62,19 +62,6 @@ const styles = theme => ({
 class SignIn extends React.Component {
   handleSubmit = (values, actions) => {
     this.props.signInAction(values.email, values.password);
-    // signInService
-    //   .signIn(values.email, values.password)
-    //   .then(userInfo => {
-    //     if (userInfo) {
-    //       localStorage.setItem("userInfo", JSON.stringify(userInfo));
-    //       debugger;
-    //       this.props.onUserLogin(userInfo);
-    //       this.props.history.push("/Dashboard");
-    //     }
-    //   })
-    //   .catch(error => {
-    //     console.error(error);
-    //   });
   };
 
   render() {

@@ -165,10 +165,6 @@ class Paperbase extends React.Component {
 
   render() {
     const { classes } = this.props;
-    if (!this.props.isAuthenticated) {
-      return <Redirect to="/signin" />;
-    }
-
     return (
       <MuiThemeProvider theme={theme}>
         <div className={classes.root}>

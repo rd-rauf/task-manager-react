@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router";
-import { ProtectedRoute } from "./Components/HOC/ProtectedRoute";
+import ProtectedRoute from "./Components/HOC/ProtectedRoute";
 
 import SignIn from "./Components/SignIn/SignIn";
 import Paperbase from "./Components/Paperbase/Paperbase";
@@ -14,8 +14,8 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route path="/signin" exact component={SignIn} />
-          <Route path="/" exact component={Paperbase} />
-          <Route path="/dashboard" exact component={Paperbase} />
+          <ProtectedRoute path="/" exact component={Paperbase} />
+          <ProtectedRoute path="/dashboard" exact component={Paperbase} />
         </Switch>
       </div>
     );
