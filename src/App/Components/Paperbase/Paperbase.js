@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 
 import { MuiThemeProvider, createMuiTheme, withStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -9,6 +8,7 @@ import Hidden from "@material-ui/core/Hidden";
 import Navigator from "./Navigator";
 import Content from "./Content";
 import Header from "./Header";
+import ProtectedView from "../HOC/ProtectedView";
 
 let theme = createMuiTheme({
   typography: {
@@ -167,28 +167,30 @@ class Paperbase extends React.Component {
     const { classes } = this.props;
     return (
       <MuiThemeProvider theme={theme}>
-        <div className={classes.root}>
-          <CssBaseline />
-          <nav className={classes.drawer}>
-            <Hidden smUp implementation="js">
-              <Navigator
-                PaperProps={{ style: { width: drawerWidth, backgroundColor: backgroundColor } }}
-                variant="temporary"
-                open={this.state.mobileOpen}
-                onClose={this.handleDrawerToggle}
-              />
-            </Hidden>
-            <Hidden xsDown implementation="css">
-              <Navigator PaperProps={{ style: { width: drawerWidth, backgroundColor: backgroundColor } }} />
-            </Hidden>
-          </nav>
-          <div className={classes.appContent}>
-            <Header onDrawerToggle={this.handleDrawerToggle} isAuthenticated={this.props.isAuthenticated} />
-            <main className={classes.mainContent}>
-              <Content />
-            </main>
+        <ProtectedView>
+          <div className={classes.root}>
+            <CssBaseline />
+            <nav className={classes.drawer}>
+              <Hidden smUp implementation="js">
+                <Navigator
+                  PaperProps={{ style: { width: drawerWidth, backgroundColor: backgroundColor } }}
+                  variant="temporary"
+                  open={this.state.mobileOpen}
+                  onClose={this.handleDrawerToggle}
+                />
+              </Hidden>
+              <Hidden xsDown implementation="css">
+                <Navigator PaperProps={{ style: { width: drawerWidth, backgroundColor: backgroundColor } }} />
+              </Hidden>
+            </nav>
+            <div className={classes.appContent}>
+              <Header onDrawerToggle={this.handleDrawerToggle} isAuthenticated={this.props.isAuthenticated} />
+              <main className={classes.mainContent}>
+                <Content />
+              </main>
+            </div>
           </div>
-        </div>
+        </ProtectedView>
       </MuiThemeProvider>
     );
   }
