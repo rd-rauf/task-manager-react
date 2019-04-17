@@ -15,18 +15,30 @@ import PermMediaOutlinedIcon from "@material-ui/icons/PhotoSizeSelectActual";
 import PublicIcon from "@material-ui/icons/Public";
 import SettingsIcon from "@material-ui/icons/Settings";
 
+import { Link as RouterLink } from 'react-router-dom'
+import Link from '@material-ui/core/Link';
+
 const categories = [
+  {
+    id: "Overview",
+    children: [
+      { id: "Dashboard", path: "/dashboard", icon: <HomeIcon /> }
+    ]
+  },
   {
     id: "Manage",
     children: [
-      { id: "Projects", icon: <DnsRoundedIcon /> },
-      { id: "Issues", icon: <PublicIcon /> },
-      { id: "Reports", icon: <PermMediaOutlinedIcon /> }
+      { id: "Projects", path: "", icon: <DnsRoundedIcon /> },
+      { id: "Issues", path: "", icon: <PublicIcon /> },
+      { id: "Reports", path: "", icon: <PermMediaOutlinedIcon /> }
     ]
   },
   {
     id: "Administration",
-    children: [{ id: "Users", icon: <PeopleIcon /> }, { id: "Settings", icon: <SettingsIcon /> }]
+    children: [
+      { id: "Users", path: "", icon: <PeopleIcon /> },
+      { id: "Settings", path: "", icon: <SettingsIcon /> }
+    ]
   }
 ];
 
@@ -83,17 +95,6 @@ function Navigator(props) {
     <Drawer variant="permanent" className={classes.drawer} {...other}>
       <List disablePadding>
         <ListItem className={classNames(classes.firebase, classes.item, classes.itemCategory)}>Task Manager</ListItem>
-        <ListItem className={classNames(classes.item, classes.itemCategory)}>
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText
-            classes={{
-              primary: classes.itemPrimary
-            }}>
-            Overview
-          </ListItemText>
-        </ListItem>
         {categories.map(({ id, children }) => (
           <React.Fragment key={id}>
             <ListItem className={classes.categoryHeader}>
@@ -104,20 +105,23 @@ function Navigator(props) {
                 {id}
               </ListItemText>
             </ListItem>
-            {children.map(({ id: childId, icon, active }) => (
+            {children.map(({ id: childId, icon, active, path }) => (
               <ListItem
                 button
                 dense
                 key={childId}
                 className={classNames(classes.item, classes.itemActionable, active && classes.itemActiveItem)}>
                 <ListItemIcon>{icon}</ListItemIcon>
-                <ListItemText
+                {/* <ListItemText
                   classes={{
                     primary: classes.itemPrimary,
                     textDense: classes.textDense
                   }}>
                   {childId}
-                </ListItemText>
+                </ListItemText> */}
+                <Link component={RouterLink} to={path}>
+                  {childId}
+                </Link>
               </ListItem>
             ))}
             <Divider className={classes.divider} />

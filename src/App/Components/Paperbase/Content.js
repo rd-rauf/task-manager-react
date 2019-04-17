@@ -1,8 +1,12 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import { withStyles } from "@material-ui/core/styles";
+
+import { Switch, Route } from "react-router";
+import ProtectedRoute from "../../Components/HOC/ProtectedRoute";
+import Dashboard from "../Dashboard/Dashboard";
 
 const styles = theme => ({
   paper: {
@@ -21,9 +25,9 @@ function Content(props) {
   return (
     <Paper className={classes.paper}>
       <div className={classes.contentWrapper}>
-        <Typography color="textSecondary" align="center">
-          No content for this project yet
-        </Typography>
+        <Switch>
+          <Route path="/dashboard" component={Dashboard} />
+        </Switch>
       </div>
     </Paper>
   );

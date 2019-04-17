@@ -13,8 +13,7 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route path="/signin" exact component={SignIn} />
-          <ProtectedRoute path="/" exact component={Paperbase} />
-          <ProtectedRoute path="/dashboard" exact component={Paperbase} />
+          <ProtectedRoute path="/" component={Paperbase} />
         </Switch>
       </div>
     );
