@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import AppBar from "@material-ui/core/AppBar";
 import Grid from "@material-ui/core/Grid";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -60,7 +61,7 @@ class Header extends React.Component {
   };
 
   render() {
-    const { classes, onDrawerToggle, isAuthenticated } = this.props;
+    const { classes, onDrawerToggle, pageTitle, isAuthenticated } = this.props;
     const { anchorEl } = this.state;
     return (
       <React.Fragment>
@@ -80,10 +81,15 @@ class Header extends React.Component {
               </Hidden>
               <Grid item xs>
                 <Typography color="inherit" variant="h5">
-                  Dashboard
+                  {pageTitle}
                 </Typography>
               </Grid>
               <Grid item />
+              <Grid item>
+                {this.props.isAuthenticated && <Typography color="inherit" variant="body1">
+                  {`${this.props.userInfo.firstName} ${this.props.userInfo.lastName}`}
+                </Typography>}
+              </Grid>
               <Grid item>
                 <Tooltip title="Alerts • No alters">
                   <IconButton color="inherit">

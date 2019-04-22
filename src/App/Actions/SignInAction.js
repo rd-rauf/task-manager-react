@@ -1,10 +1,6 @@
 import signInService from "../Services/SignInService";
 import * as actionTypes from "./ActionTypes";
 
-import { createBrowserHistory } from "history";
-
-export const history = createBrowserHistory();
-
 export const signInAction = (email, password) => {
   return dispatch => {
     dispatch({ type: actionTypes.AUTH_START });

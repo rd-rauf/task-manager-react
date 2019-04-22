@@ -180,13 +180,13 @@ class Paperbase extends React.Component {
                 />
               </Hidden>
               <Hidden xsDown implementation="css">
-                <Navigator PaperProps={{ style: { width: drawerWidth, backgroundColor: backgroundColor } }} />
+                <Navigator userInfo={this.props.userInfo} PaperProps={{ style: { width: drawerWidth, backgroundColor: backgroundColor } }} />
               </Hidden>
             </nav>
             <div className={classes.appContent}>
-              <Header onDrawerToggle={this.handleDrawerToggle} isAuthenticated={this.props.isAuthenticated} />
+              <Header onDrawerToggle={this.handleDrawerToggle} isAuthenticated={this.props.isAuthenticated} userInfo={this.props.userInfo} />
               <main className={classes.mainContent}>
-                <Content />
+                <Content userInfo={this.props.userInfo} />
               </main>
             </div>
           </div>
@@ -202,7 +202,8 @@ Paperbase.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.sir.isAuthenticated
+    isAuthenticated: state.sir.isAuthenticated,
+    userInfo: state.sir.userInfo
   };
 };
 
