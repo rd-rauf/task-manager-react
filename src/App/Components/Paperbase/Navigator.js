@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { withRouter, Redirect } from "react-router";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
 import Divider from "@material-ui/core/Divider";
@@ -15,29 +16,29 @@ import PermMediaOutlinedIcon from "@material-ui/icons/PhotoSizeSelectActual";
 import PublicIcon from "@material-ui/icons/Public";
 import SettingsIcon from "@material-ui/icons/Settings";
 
-import { Link as RouterLink } from 'react-router-dom'
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom'
+import MatLink from '@material-ui/core/Link';
 
 const categories = [
   {
     id: "Overview",
     children: [
-      { id: "Dashboard", path: "/dashboard", icon: <HomeIcon /> }
+      { id: "Dashboard", title: "Dashboard", path: "/dashboard", icon: <HomeIcon /> }
     ]
   },
   {
     id: "Manage",
     children: [
-      { id: "Projects", path: "", icon: <DnsRoundedIcon /> },
-      { id: "Issues", path: "", icon: <PublicIcon /> },
-      { id: "Reports", path: "", icon: <PermMediaOutlinedIcon /> }
+      { id: "Projects", title: "Projects", path: "", icon: <DnsRoundedIcon /> },
+      { id: "Issues", title: "Issues", path: "", icon: <PublicIcon /> },
+      { id: "Reports", title: "Reports", path: "", icon: <PermMediaOutlinedIcon /> }
     ]
   },
   {
     id: "Administration",
     children: [
-      { id: "Users", path: "", icon: <PeopleIcon /> },
-      { id: "Settings", path: "", icon: <SettingsIcon /> }
+      { id: "Users", title: "Users", path: "", icon: <PeopleIcon /> },
+      { id: "Settings", title: "Settings", path: "", icon: <SettingsIcon /> }
     ]
   }
 ];
@@ -90,7 +91,7 @@ const styles = theme => ({
 
 function Navigator(props) {
   const { classes, ...other } = props;
-
+  debugger;
   return (
     <Drawer variant="permanent" className={classes.drawer} {...other}>
       <List disablePadding>
@@ -105,23 +106,16 @@ function Navigator(props) {
                 {id}
               </ListItemText>
             </ListItem>
-            {children.map(({ id: childId, icon, active, path }) => (
+            {children.map(({ id: childId, icon, active, path, title }) => (
               <ListItem
                 button
                 dense
                 key={childId}
                 className={classNames(classes.item, classes.itemActionable, active && classes.itemActiveItem)}>
                 <ListItemIcon>{icon}</ListItemIcon>
-                {/* <ListItemText
-                  classes={{
-                    primary: classes.itemPrimary,
-                    textDense: classes.textDense
-                  }}>
+                <MatLink component={Link} to={{ pathname: path, state: { data: title } }}>
                   {childId}
-                </ListItemText> */}
-                <Link component={RouterLink} to={path}>
-                  {childId}
-                </Link>
+                </MatLink>
               </ListItem>
             ))}
             <Divider className={classes.divider} />
@@ -136,4 +130,4 @@ Navigator.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Navigator);
+export default withRouter(withStyles(styles)(Navigator));

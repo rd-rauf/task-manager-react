@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { withRouter, Redirect } from "react-router";
 
 import AppBar from "@material-ui/core/AppBar";
 import Grid from "@material-ui/core/Grid";
@@ -63,6 +64,7 @@ class Header extends React.Component {
   render() {
     const { classes, onDrawerToggle, pageTitle, isAuthenticated } = this.props;
     const { anchorEl } = this.state;
+    debugger;
     return (
       <React.Fragment>
         <AppBar color="primary" className={classes.appbar} position="sticky" elevation={0}>
@@ -81,7 +83,7 @@ class Header extends React.Component {
               </Hidden>
               <Grid item xs>
                 <Typography color="inherit" variant="h5">
-                  {pageTitle}
+                  {this.props.title}
                 </Typography>
               </Grid>
               <Grid item />
@@ -120,4 +122,4 @@ Header.propTypes = {
   onDrawerToggle: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(Header);
+export default withRouter(withStyles(styles)(Header));
