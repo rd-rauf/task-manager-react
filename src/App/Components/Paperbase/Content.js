@@ -7,6 +7,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Switch, Route } from "react-router";
 import ProtectedRoute from "../../Components/HOC/ProtectedRoute";
 import Dashboard from "../Dashboard/Dashboard";
+import Projects from "../Projects/Projects";
 
 const styles = theme => ({
   paper: {
@@ -26,7 +27,8 @@ function Content(props) {
     <Paper className={classes.paper}>
       <div className={classes.contentWrapper}>
         <Switch>
-          <Route path="/dashboard" component={Dashboard} />
+          <ProtectedRoute path="/dashboard" component={Dashboard} />
+          <ProtectedRoute path="/projects" component={Projects} />
         </Switch>
       </div>
     </Paper>

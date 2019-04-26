@@ -1,8 +1,8 @@
 import React from 'react';
 import * as commonActions from "../../Actions/CommonActions";
 
-export default function Dashboard(props) {
+export default function Projects(props) {
   return (
-    <h1>This is the Dashboard</h1>
+    <h1>This is the Projects page</h1>
   )
 }

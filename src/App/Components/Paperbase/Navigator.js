@@ -29,7 +29,7 @@ const categories = [
   {
     id: "Manage",
     children: [
-      { id: "Projects", title: "Projects", path: "", icon: <DnsRoundedIcon /> },
+      { id: "Projects", title: "Projects", path: "/projects", icon: <DnsRoundedIcon /> },
       { id: "Issues", title: "Issues", path: "", icon: <PublicIcon /> },
       { id: "Reports", title: "Reports", path: "", icon: <PermMediaOutlinedIcon /> }
     ]
@@ -113,7 +113,7 @@ function Navigator(props) {
                 key={childId}
                 className={classNames(classes.item, classes.itemActionable, active && classes.itemActiveItem)}>
                 <ListItemIcon>{icon}</ListItemIcon>
-                <MatLink component={Link} to={{ pathname: path, state: { data: title } }}>
+                <MatLink component={Link} to={{ pathname: path, state: { title: title } }}>
                   {childId}
                 </MatLink>
               </ListItem>

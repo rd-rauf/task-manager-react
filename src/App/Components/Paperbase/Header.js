@@ -62,8 +62,9 @@ class Header extends React.Component {
   };
 
   render() {
-    const { classes, onDrawerToggle, pageTitle, isAuthenticated } = this.props;
+    const { classes, onDrawerToggle, isAuthenticated } = this.props;
     const { anchorEl } = this.state;
+    const pageTitle = this.props.location.state ? this.props.location.state.title : "";
     debugger;
     return (
       <React.Fragment>
@@ -83,7 +84,7 @@ class Header extends React.Component {
               </Hidden>
               <Grid item xs>
                 <Typography color="inherit" variant="h5">
-                  {this.props.title}
+                  {pageTitle}
                 </Typography>
               </Grid>
               <Grid item />

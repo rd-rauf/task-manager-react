@@ -7,7 +7,9 @@ const ProtectedRoute = ({ component: Component, isAuthenticated, ...rest }) => {
     <Route
       {...rest}
       render={props => {
-        if (isAuthenticated) {
+        const userInfo = localStorage.getItem("userInfo") ? JSON.parse(localStorage.getItem("userInfo")) : undefined
+        debugger;
+        if (userInfo) {
           return <Component {...props} />;
         } else {
           return <Redirect to={{ pathname: "/signin", state: { from: props.location } }} />;
