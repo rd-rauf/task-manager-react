@@ -15,3 +15,9 @@ export const signInAction = (email, password) => {
       });
   };
 };
+
+export const signOutAction = () => {
+  return {
+    type: actionTypes.AUTH_LOGOUT
+  };
+};

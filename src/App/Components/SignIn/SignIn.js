@@ -17,7 +17,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import { Formik, ErrorMessage } from "formik";
-import * as actions from "../../Actions/SignInAction";
+import * as asyncActions from "../../Actions/SignInAction";
 import * as yup from "yup";
 import "./SignIn.css";
 
@@ -142,7 +142,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     signInAction: (email, password) => {
-      dispatch(actions.signInAction(email, password));
+      dispatch(asyncActions.signInAction(email, password));
     }
   };
 };

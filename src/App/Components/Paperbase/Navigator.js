@@ -16,15 +16,13 @@ import PermMediaOutlinedIcon from "@material-ui/icons/PhotoSizeSelectActual";
 import PublicIcon from "@material-ui/icons/Public";
 import SettingsIcon from "@material-ui/icons/Settings";
 
-import { Link } from 'react-router-dom'
-import MatLink from '@material-ui/core/Link';
+import { Link } from "react-router-dom";
+import MatLink from "@material-ui/core/Link";
 
 const categories = [
   {
     id: "Overview",
-    children: [
-      { id: "Dashboard", title: "Dashboard", path: "/dashboard", icon: <HomeIcon /> }
-    ]
+    children: [{ id: "Dashboard", title: "Dashboard", path: "/dashboard", icon: <HomeIcon /> }]
   },
   {
     id: "Manage",
@@ -91,7 +89,6 @@ const styles = theme => ({
 
 function Navigator(props) {
   const { classes, ...other } = props;
-  debugger;
   return (
     <Drawer variant="permanent" className={classes.drawer} {...other}>
       <List disablePadding>

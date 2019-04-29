@@ -65,7 +65,6 @@ class Header extends React.Component {
     const { classes, onDrawerToggle, isAuthenticated } = this.props;
     const { anchorEl } = this.state;
     const pageTitle = this.props.location.state ? this.props.location.state.title : "";
-    debugger;
     return (
       <React.Fragment>
         <AppBar color="primary" className={classes.appbar} position="sticky" elevation={0}>
@@ -89,9 +88,11 @@ class Header extends React.Component {
               </Grid>
               <Grid item />
               <Grid item>
-                {this.props.isAuthenticated && <Typography color="inherit" variant="body1">
-                  {`${this.props.userInfo.firstName} ${this.props.userInfo.lastName}`}
-                </Typography>}
+                {this.props.isAuthenticated && (
+                  <Typography color="inherit" variant="body1">
+                    {`${this.props.userInfo.firstName} ${this.props.userInfo.lastName}`}
+                  </Typography>
+                )}
               </Grid>
               <Grid item>
                 <Tooltip title="Alerts • No alters">

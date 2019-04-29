@@ -10,6 +10,9 @@ const signInReducer = (state = initialState, action) => {
     case actionTypes.AUTH_SUCCESS: {
       return { ...state, isAuthenticated: true, userInfo: action.payload };
     }
+    case actionTypes.AUTH_LOGOUT: {
+      return { ...state, isAuthenticated: false };
+    }
     default:
       return state;
   }
