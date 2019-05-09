@@ -19,7 +19,7 @@ import { Redirect } from "react-router-dom";
 import { Formik, ErrorMessage } from "formik";
 import * as asyncActions from "../../Actions/SignInAction";
 import * as yup from "yup";
-import "./SignIn.css";
+import "./SignIn.scss";
 
 const styles = theme => ({
   main: {
@@ -61,12 +61,14 @@ const styles = theme => ({
 
 class SignIn extends React.Component {
   handleSubmit = (values, actions) => {
+    debugger;
     this.props.signInAction(values.email, values.password);
   };
 
   render() {
-    const { classes, email, password } = this.props;
-    if (this.props.isAuthenticated) {
+    const { classes, email, password, networkAccess, isAuthenticated } = this.props;
+    debugger;
+    if (isAuthenticated) {
       return <Redirect to="/dashboard" />;
     }
     return (
@@ -79,6 +81,9 @@ class SignIn extends React.Component {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+          {networkAccess == false && <h3 className="network-access_msg">
+            Network Access Error!
+          </h3>}
           <Formik
             initialValues={(email, password)}
             onSubmit={(values, actions) => this.handleSubmit(values, actions)}
@@ -95,6 +100,9 @@ class SignIn extends React.Component {
             })}
             render={({ values, errors, status, touched, handleBlur, handleChange, handleSubmit, isSubmitting }) => (
               <form className={classes.form} onSubmit={handleSubmit} noValidate>
+                <div>
+                  {/* {JSON.stringify(errors)} */}
+                </div>
                 <FormControl margin="normal" required fullWidth>
                   <InputLabel htmlFor="email">Email</InputLabel>
                   <Input
@@ -120,6 +128,9 @@ class SignIn extends React.Component {
                   />
                   <ErrorMessage name="password" component="div" className="error-message" />
                 </FormControl>
+                {isAuthenticated == false && <h3 className="error-message">
+                  Invalid username/password!
+                </h3>}
                 <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
                 <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
                   Sign in
@@ -135,7 +146,8 @@ class SignIn extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.sir.isAuthenticated
+    isAuthenticated: state.sir.isAuthenticated,
+    networkAccess: state.sir.networkAccess
   };
 };
 

@@ -10,6 +10,8 @@ function signIn(email, password) {
       const data = response.data;
       if (data && data.status === "success") {
         return data.data;
+      } else {
+        return undefined;
       }
     });
 }
