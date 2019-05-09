@@ -66,7 +66,7 @@ class SignIn extends React.Component {
   };
 
   render() {
-    const { classes, email, password, networkAccess, isAuthenticated } = this.props;
+    const { classes, email, password, networkAccess, isAuthenticated, userAuthFailed } = this.props;
     debugger;
     if (isAuthenticated) {
       return <Redirect to="/dashboard" />;
@@ -128,7 +128,7 @@ class SignIn extends React.Component {
                   />
                   <ErrorMessage name="password" component="div" className="error-message" />
                 </FormControl>
-                {isAuthenticated == false && <h3 className="error-message">
+                {userAuthFailed && <h3 className="error-message">
                   Invalid username/password!
                 </h3>}
                 <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
@@ -147,7 +147,8 @@ class SignIn extends React.Component {
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.sir.isAuthenticated,
-    networkAccess: state.sir.networkAccess
+    networkAccess: state.sir.networkAccess,
+    userAuthFailed: state.sir.userAuthFailed
   };
 };
 
