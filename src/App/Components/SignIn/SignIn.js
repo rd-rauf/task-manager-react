@@ -61,15 +61,13 @@ const styles = theme => ({
 
 class SignIn extends React.Component {
   handleSubmit = (values, actions) => {
-    debugger;
     this.props.signInAction(values.email, values.password);
   };
 
   render() {
     const { classes, email, password, networkAccess, isAuthenticated, userAuthFailed } = this.props;
-    debugger;
     if (isAuthenticated) {
-      return <Redirect to="/dashboard" />;
+      return <Redirect to={{ pathname: "/dashboard", state: { title: "Dashboard" } }} />;
     }
     return (
       <main className={classes.main}>
@@ -81,9 +79,7 @@ class SignIn extends React.Component {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          {networkAccess == false && <h3 className="network-access_msg">
-            Network Access Error!
-          </h3>}
+          {networkAccess == false && <h3 className="network-access_msg">Network Access Error!</h3>}
           <Formik
             initialValues={(email, password)}
             onSubmit={(values, actions) => this.handleSubmit(values, actions)}
@@ -100,9 +96,7 @@ class SignIn extends React.Component {
             })}
             render={({ values, errors, status, touched, handleBlur, handleChange, handleSubmit, isSubmitting }) => (
               <form className={classes.form} onSubmit={handleSubmit} noValidate>
-                <div>
-                  {/* {JSON.stringify(errors)} */}
-                </div>
+                <div>{/* {JSON.stringify(errors)} */}</div>
                 <FormControl margin="normal" required fullWidth>
                   <InputLabel htmlFor="email">Email</InputLabel>
                   <Input
@@ -128,9 +122,7 @@ class SignIn extends React.Component {
                   />
                   <ErrorMessage name="password" component="div" className="error-message" />
                 </FormControl>
-                {userAuthFailed && <h3 className="error-message">
-                  Invalid username/password!
-                </h3>}
+                {userAuthFailed && <h3 className="error-message">Invalid username/password!</h3>}
                 <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
                 <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
                   Sign in

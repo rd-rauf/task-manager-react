@@ -8,7 +8,6 @@ const initialState = {
 };
 
 const signInReducer = (state = initialState, action) => {
-  debugger;
   switch (action.type) {
     case actionTypes.AUTH_SUCCESS: {
       return { ...state, networkAccess: true, isAuthenticated: true, userAuthFailed: false, userInfo: action.payload };
