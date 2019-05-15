@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import { withStyles } from "@material-ui/core/styles";
 
-import { Switch, Route } from "react-router";
+import { Switch, Route } from "react-router-dom";
 import ProtectedRoute from "../../Components/HOC/ProtectedRoute";
 import Dashboard from "../Dashboard/Dashboard";
 import Projects from "../Projects/Projects";

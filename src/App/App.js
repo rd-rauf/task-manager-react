@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router";
+import { Switch, Route } from "react-router-dom";
 import ProtectedRoute from "./Components/HOC/ProtectedRoute";
 
 import SignIn from "./Components/SignIn/SignIn";
